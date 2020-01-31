@@ -2,8 +2,11 @@ const express = require('express');
 const app = express();
 const Vigenere = require('caesar-salad').Vigenere;
 const port = 8080;
-let cipher = Vigenere.Cipher('abcdefg');
-app.get('/password/:name', (req,res)=>{res.send(cipher.crypt(req.params.name))});
+
+
+app.get('/encode/:name', (req,res)=>{res.send(Vigenere.Cipher('password').crypt(req.params.name))});
+app.get('/decode/:name', (req,res)=>{res.send(Vigenere.Decipher('password').crypt(req.params.name))});
+
 app.listen(port, console.log('Port '+ port));
 
 
